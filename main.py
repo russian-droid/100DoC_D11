@@ -1,4 +1,4 @@
-#
+#following Udemy course: 100 days of code by Angela Yu
 
 ## The deck is unlimited in size. 
 ## There are no jokers. 
