@@ -16,7 +16,7 @@ comp=[]
 #user cards
 user=[]
 
-def random_card():
+def pull_random_card():
     '''
     picks a random card from the list
     '''
@@ -24,9 +24,9 @@ def random_card():
     #pick a random element from the list
     random_element = random.randint(0,(len(cards)-1))
     #get the number inside that element
-    random_card = cards[random_element]
-    print(f'random card from function {random_card}') #QC
-    return random_card
+    card = cards[random_element]
+    #print(f'random card from function {card}') #QC
+    return card
 
 def check_if_blacjack(list):
     '''
@@ -38,27 +38,37 @@ def check_if_blacjack(list):
     else:
         return False
 
+def check_if_over21(list):
+    '''
+    checks if total is over 21
+    '''
+    total = sum(list)
+    if total > 21:
+        return True
+    else:
+        return False    
+
 def ace_check(total):
     '''
     check if ACE has to count as 11 point or 1 point
     '''
     if total + 11 > 21:
-        random_card = 1
-        print('ACE = 1')
-        return random_card
+        ace = 1
+        #print('ACE = 1') #QC
+        return ace
     else:
-        random_card = 11
-        print('ACE = 11')
-        return random_card
-'''
-#pick random cards via random_card() and save in the list for comp
-comp.append(random_card())
-comp.append(random_card())
+        ace = 11
+        #print('ACE = 11') #QC
+        return ace
+
+#pick random cards via pull_random_card() and save in the list for comp
+comp.append(pull_random_card())
+comp.append(pull_random_card())
 print(f"comp: {comp}") #QC
 
-#pick random cards via random_card() and save in the list for user
-user.append(random_card())
-user.append(random_card())
+#pick random cards via pull_random_card() and save in the list for user
+user.append(pull_random_card())
+user.append(pull_random_card())
 print(f"user: {user}\n") #QC
 
 
@@ -71,27 +81,36 @@ else:
         #END GAME
     #else: #QC
     #    print('keep playing') #QC
-'''
+
 
 #calc score comp
 total_comp = sum(comp)
-print(f'total_comp {total_comp}')
+print(f'total_comp {total_comp}') #QC
 #pick a random card
-random_card()
-print(f'random_card NEW:{random_card}')
+temp_card1=pull_random_card()
+print(f'random_card NEW:{temp_card1}')
 #if ACE decide 11 or 1
-if random_card == 11:
-    ace_check(total_comp)
+if temp_card1 == 11:
+    temp_card1=ace_check(total_comp)
 #add to the list
-comp.append(random_card)
-print(f"comp: {comp}") #QC
+comp.append(temp_card1)
+#print(f"comp: {temp_card1}\n") #QC
+print(comp) #QC
+if check_if_over21(comp):
+    print('comp is LOST')
 
 #calc score user
 total_user = sum(user)
-print(f'total_user {total_user}')
-random_card()
-print(f'random_card NEW:{random_card}')
-if random_card == 11:
-    ace_check(total_user)
-user.append(random_card)
-print(f"user: {user}") #QC
+print(f'total_comp {total_user}') #QC
+#pick a random card
+temp_card2=pull_random_card()
+print(f'random_card NEW:{temp_card2}')
+#if ACE decide 11 or 1
+if temp_card2 == 11:
+    temp_card2=ace_check(total_user)
+#add to the list
+user.append(temp_card2)
+#print(f"user: {temp_card2}\n") #QC
+print(user) #QC
+if check_if_over21(user):
+    print('user is LOST')
